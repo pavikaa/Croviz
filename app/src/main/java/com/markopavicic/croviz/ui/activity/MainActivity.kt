@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.ActivityMainBinding
+import com.markopavicic.croviz.utils.Prefs
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
+
+        if (Prefs.checkIfFirstRun())
+            Prefs.firstRun()
 
     }
 

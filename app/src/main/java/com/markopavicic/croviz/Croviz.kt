@@ -1,4 +1,4 @@
-package com.markopavicic.croviz.ui
+package com.markopavicic.croviz
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
@@ -8,6 +8,7 @@ class Croviz : Application() {
     override fun onCreate() {
         super.onCreate()
         Prefs.init(this)
+
         if (Prefs.getThemeFromPrefs() != -1)
             AppCompatDelegate.setDefaultNightMode(Prefs.getThemeFromPrefs())
         else
