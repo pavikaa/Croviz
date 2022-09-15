@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         if (Prefs.checkIfFirstRun())
             Prefs.firstRun()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

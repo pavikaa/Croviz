@@ -43,10 +43,10 @@ class HomeFragment : Fragment() {
                 .setAnchorView(R.id.fab)
                 .setAction("Action", null).show()
         }
-        binding.cardEndlessFragmentHome.setOnClickListener{
+        binding.cardEndlessFragmentHome.setOnClickListener {
             launchEndlessQuiz()
         }
-        binding.cardStatsFragmentHome.setOnClickListener{
+        binding.cardStatsFragmentHome.setOnClickListener {
             launchStatsActivity()
         }
     }
