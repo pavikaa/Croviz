@@ -3,12 +3,14 @@ package com.markopavicic.croviz.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.markopavicic.croviz.R
@@ -36,8 +38,26 @@ class LoginActivity : AppCompatActivity() {
         binding.btnSignIn.setOnClickListener {
             signIn()
         }
+        binding.btnSkipLogin.setOnClickListener {
+            skipSignIn()
+        }
 
 
+    }
+
+    private fun skipSignIn() {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Skip sign in")
+                .setMessage("If you don't sign in you won't be able to create your own quizzes. Do you want to continue?")
+                .setNegativeButton("No") { dialog, which ->
+                    // Respond to negative button press
+                }
+                .setPositiveButton("Yes") { dialog, which ->
+                   val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .show()
     }
 
     private fun signIn() {
