@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_grap_quiz_creation"
+    app:startDestination="@id/quizCreationDetailsFragment">
+    <fragment
+        android:id="@+id/quizCreationDetailsFragment"
+        android:name="com.markopavicic.croviz.ui.fragment.QuizCreationDetailsFragment"
+        android:label="Details">
+        <action
+            android:id="@+id/action_quizCreationDetailsFragment_to_quizCreationQuestionsFragment"
+            app:destination="@id/quizCreationQuestionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizCreationQuestionsFragment"
+        android:name="com.markopavicic.croviz.ui.fragment.QuizCreationQuestionsFragment"
+        android:label="Questions">
+        <action
+            android:id="@+id/action_quizCreationQuestionsFragment_to_quizCreationDetailsFragment"
+            app:destination="@id/quizCreationDetailsFragment" />
+        <argument
+            android:name="quizName"
+            app:argType="string" />
+        <argument
+            android:name="quizCategory"
+            app:argType="string" />
+        <argument
+            android:name="hideCreator"
+            app:argType="boolean" />
+    </fragment>
+</navigation>

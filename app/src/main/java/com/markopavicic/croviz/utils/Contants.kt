@@ -5,5 +5,6 @@ class Constants {
         const val SHARED_PREFERENCES_KEY = "sharedPrefs"
         const val THEME_KEY = "theme"
         const val FIRST_RUN_KEY = "firstRun"
+        const val QUIZ_ID_KEY = "quizId"
     }
 }

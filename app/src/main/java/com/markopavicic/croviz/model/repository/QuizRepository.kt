@@ -15,4 +15,8 @@ class QuizRepository {
             .child(quizReference.push().key!!)
             .setValue(quiz)
     }
+
+    fun getKey(): String {
+        return quizReference.push().key!!
+    }
 }
