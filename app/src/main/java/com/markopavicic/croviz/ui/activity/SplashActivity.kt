@@ -13,7 +13,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         val firstRun = Prefs.checkIfFirstRun()
-        Log.d("firstRun", firstRun.toString())
         if (firstRun) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

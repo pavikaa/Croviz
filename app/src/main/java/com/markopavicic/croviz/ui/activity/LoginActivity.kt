@@ -46,12 +46,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun skipSignIn() {
         MaterialAlertDialogBuilder(this)
-            .setTitle("Skip sign in")
-            .setMessage("If you don't sign in you won't be able to create your own quizzes. Do you want to continue?")
-            .setNegativeButton("No") { dialog, which ->
+            .setTitle(getString(R.string.skip_sign_in))
+            .setMessage(getString(R.string.skip_sign_in_details))
+            .setNegativeButton(getString(R.string.no)) { dialog, which ->
                 // Respond to negative button press
             }
-            .setPositiveButton("Yes") { dialog, which ->
+            .setPositiveButton(getString(R.string.yes)) { dialog, which ->
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                     firebaseAuthWithGoogle(account.idToken!!)
                 } catch (e: ApiException) {
                     // Google Sign In failed, update UI appropriately
-                    Log.w(TAG, "Google sign in failed", e)
+                    Log.w(TAG, getString(R.string.google_sign_in_failed), e)
                 }
             } else {
                 Log.w(TAG, exception.toString())

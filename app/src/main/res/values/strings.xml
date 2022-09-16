@@ -46,4 +46,19 @@
     <string name="title_activity_login">LoginActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip_sign_in">Skip sign in</string>
+    <string name="skip_sign_in_details">If you don\'t sign in you won\'t be able to create your own quizzes. Do you want to continue?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="google_sign_in_failed">Google sign in failed</string>
+    <string name="error_required">Required*</string>
+    <string name="add_question">Add question</string>
+    <string name="add_question_details">Would you like to add another question?</string>
+    <string name="finish_quiz_creation">No, finish quiz creation</string>
+    <string name="add_another_question">Yes, add another question</string>
+    <string name="error_answers">You need to add at least one correct and one incorrect question</string>
+    <string name="error_questions">You need to add at least one question to your quiz.</string>
+    <string name="logged_out_user">Logged out user</string>
+    <string name="sign_out">Sign out</string>
+    <string name="sign_out_details">You are about to sign out. Do you want to continue?</string>
 </resources>

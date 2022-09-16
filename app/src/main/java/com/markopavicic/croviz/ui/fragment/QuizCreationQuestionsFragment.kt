@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelspot.adapter.AnswerAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.FragmentQuizCreationQuestionsBinding
 import com.markopavicic.croviz.model.data.Answer
 import com.markopavicic.croviz.model.repository.QuizRepository
@@ -55,13 +56,13 @@ class QuizCreationQuestionsFragment : Fragment() {
         }
         binding.btnAddQuestionCreation.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Add question")
-                .setMessage("Would you like to add another question?")
-                .setNegativeButton("No, finish quiz creation") { dialog, which ->
+                .setTitle(getString(R.string.add_question))
+                .setMessage(getString(R.string.add_question_details))
+                .setNegativeButton(getString(R.string.finish_quiz_creation)) { dialog, which ->
                     if (addQuestion())
                         finishQuizCreation()
                 }
-                .setPositiveButton("Yes, add another question") { dialog, which ->
+                .setPositiveButton(getString(R.string.add_another_question)) { dialog, which ->
                     if (addQuestion())
                         addAnotherQuestion()
                 }
@@ -93,14 +94,14 @@ class QuizCreationQuestionsFragment : Fragment() {
     private fun checkQuestionInput(): Boolean {
         val tfQuestion = binding.tfQuizQuestionCreation
         if (TextUtils.isEmpty(tfQuestion.editText?.text)) {
-            tfQuestion.error = "Required*"
+            tfQuestion.error = getString(R.string.error_required)
             return false
         } else {
             tfQuestion.error = ""
         }
         if (!viewModel.checkAnswers()) {
             binding.tfQuizAnswerCreation.error =
-                "You need to add at least one correct and one incorrect question"
+                getString(R.string.error_answers)
             return false
         }
         return true
@@ -109,7 +110,7 @@ class QuizCreationQuestionsFragment : Fragment() {
     private fun checkAnswerInput(): Boolean {
         val tfAnswer = binding.tfQuizAnswerCreation
         if (TextUtils.isEmpty(tfAnswer.editText?.text)) {
-            tfAnswer.error = "Required*"
+            tfAnswer.error = getString(R.string.error_required)
             return false
         } else {
             tfAnswer.error = ""
@@ -133,7 +134,7 @@ class QuizCreationQuestionsFragment : Fragment() {
     private fun finishQuizCreation() {
         if (viewModel.questions.value?.isEmpty()!!) {
             binding.tfQuizQuestionCreation.error =
-                "You need to add at least one question to your quiz."
+                getString(R.string.error_questions)
         } else {
             val quizName = args.quizName
             val quizCategory = args.quizCategory

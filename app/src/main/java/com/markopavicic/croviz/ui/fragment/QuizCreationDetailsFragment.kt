@@ -49,7 +49,7 @@ class QuizCreationDetailsFragment : Fragment() {
     private fun getInputs(): Boolean {
         val tfName = binding.tfQuizNameCreation
         if (TextUtils.isEmpty(tfName.editText?.text)) {
-            tfName.error = "Required*"
+            tfName.error = getString(R.string.error_required)
             return false
         } else {
             tfName.error = ""

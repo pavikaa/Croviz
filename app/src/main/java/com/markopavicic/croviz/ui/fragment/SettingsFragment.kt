@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.FragmentSettingsBinding
 import com.markopavicic.croviz.ui.activity.LoginActivity
 import com.markopavicic.croviz.utils.Prefs
@@ -39,7 +40,7 @@ class SettingsFragment : Fragment() {
         } else {
             binding.btnSignIn.visibility = View.VISIBLE
             binding.btnSignOut.visibility = View.GONE
-            binding.tvName.text = "Logged out user"
+            binding.tvName.text = getString(R.string.logged_out_user)
         }
         binding.btnSignIn.setOnClickListener {
             val intent = Intent(context, LoginActivity::class.java)
@@ -48,15 +49,15 @@ class SettingsFragment : Fragment() {
         }
         binding.btnSignOut.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Sign out")
-                .setMessage("You are about to sign out. Do you want to continue?")
-                .setNegativeButton("No") { dialog, which ->
+                .setTitle(getString(R.string.sign_out))
+                .setMessage(getString(R.string.sign_out_details))
+                .setNegativeButton(getString(R.string.no)) { dialog, which ->
                     // Respond to negative button press
                 }
-                .setPositiveButton("Yes") { dialog, which ->
+                .setPositiveButton(getString(R.string.yes)) { dialog, which ->
                     binding.btnSignIn.visibility = View.VISIBLE
                     binding.btnSignOut.visibility = View.GONE
-                    binding.tvName.text = "Logged out user"
+                    binding.tvName.text = getString(R.string.logged_out_user)
                     mAuth.signOut()
                 }
                 .show()
