@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.FragmentHomeBinding
 import com.markopavicic.croviz.ui.activity.EndlessQuizActivity
@@ -73,8 +74,12 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<MaterialButton>(R.id.btn_new_quiz).setOnClickListener {
-            launchNewQuiz()
+        if (FirebaseAuth.getInstance().currentUser != null)
+            view.findViewById<MaterialButton>(R.id.btn_new_quiz).setOnClickListener {
+                launchNewQuiz()
+            }
+        else {
+            view.findViewById<MaterialButton>(R.id.btn_new_quiz).visibility = View.GONE
         }
         view.findViewById<MaterialButton>(R.id.btn_scan_qr).setOnClickListener {
             launchScanQr()
