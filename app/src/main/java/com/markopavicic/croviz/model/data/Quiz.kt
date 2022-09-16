@@ -8,4 +8,6 @@ data class Quiz(
     val createdAt: String,
     val questions: List<Question>
 
-)
+) {
+    constructor() : this("", "", "", "", "", listOf())
+}

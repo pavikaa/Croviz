@@ -2,7 +2,6 @@ package com.markopavicic.croviz.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.utils.Prefs

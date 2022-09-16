@@ -61,4 +61,11 @@
     <string name="logged_out_user">Logged out user</string>
     <string name="sign_out">Sign out</string>
     <string name="sign_out_details">You are about to sign out. Do you want to continue?</string>
+    <string name="general_knowledge">General knowledge</string>
+    <string name="music">Music</string>
+    <string name="tv">TV</string>
+    <string name="science">Science</string>
+    <string name="history">History</string>
+    <string name="geography">Geography</string>
+    <string name="sports">Sports</string>
 </resources>

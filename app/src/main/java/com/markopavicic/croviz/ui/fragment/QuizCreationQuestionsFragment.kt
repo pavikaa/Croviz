@@ -19,12 +19,12 @@ import com.markopavicic.croviz.model.data.Answer
 import com.markopavicic.croviz.model.repository.QuizRepository
 import com.markopavicic.croviz.ui.activity.QuizDetailsActivity
 import com.markopavicic.croviz.utils.Constants
-import com.markopavicic.croviz.viewmodel.QuizViewModel
-import com.markopavicic.croviz.viewmodel.QuizViewModelFactory
+import com.markopavicic.croviz.viewmodel.QuizCreationViewModel
+import com.markopavicic.croviz.viewmodel.QuizCreationViewModelFactory
 
 class QuizCreationQuestionsFragment : Fragment() {
-    private val viewModel: QuizViewModel by activityViewModels {
-        QuizViewModelFactory(QuizRepository())
+    private val viewModel: QuizCreationViewModel by activityViewModels {
+        QuizCreationViewModelFactory(QuizRepository())
     }
     private var _binding: FragmentQuizCreationQuestionsBinding? = null
 
@@ -49,7 +49,7 @@ class QuizCreationQuestionsFragment : Fragment() {
             if (checkAnswerInput()) {
                 val answer = binding.tfQuizAnswerCreation.editText?.text.toString()
                 val isCorrect = binding.chkCorrectAnswerCreation.isChecked
-                binding.tfQuizAnswerCreation.editText?.setText("")
+                clearAnswerInput()
                 viewModel.addAnswer(Answer(isCorrect, answer))
                 answersRecyclerView.adapter?.notifyDataSetChanged()
             }
@@ -75,7 +75,12 @@ class QuizCreationQuestionsFragment : Fragment() {
 
     private fun addAnotherQuestion() {
         clearQuestionInput()
+        clearAnswerInput()
         clearAnswers()
+    }
+
+    private fun clearAnswerInput() {
+        binding.tfQuizAnswerCreation.editText?.setText("")
     }
 
     private fun addQuestion(): Boolean {
@@ -128,7 +133,7 @@ class QuizCreationQuestionsFragment : Fragment() {
     }
 
     private fun clearQuestionInput() {
-        binding.tfQuizAnswerCreation.editText?.setText("")
+        binding.tfQuizQuestionCreation.editText?.setText("")
     }
 
     private fun finishQuizCreation() {

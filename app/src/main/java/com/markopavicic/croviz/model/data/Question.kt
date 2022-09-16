@@ -4,4 +4,6 @@ data class Question(
     val questionId: String,
     val question: String,
     val answers: List<Answer>
-)
+) {
+    constructor() : this("", "", listOf())
+}
