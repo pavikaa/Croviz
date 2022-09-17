@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_quiz"
+    app:startDestination="@id/quizPreparationFragment">
+
+    <fragment
+        android:id="@+id/quizPreparationFragment"
+        android:name="com.markopavicic.croviz.ui.fragment.QuizPreparationFragment"
+        android:label="fragment_quiz_preparation"
+        tools:layout="@layout/fragment_quiz_preparation">
+        <action
+            android:id="@+id/action_quizPreparationFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.markopavicic.croviz.ui.fragment.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question">
+        <action
+            android:id="@+id/action_questionFragment_to_quizCompletionFragment"
+            app:destination="@id/quizCompletionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizCompletionFragment"
+        android:name="com.markopavicic.croviz.ui.fragment.QuizCompletionFragment"
+        android:label="fragment_quiz_completion"
+        tools:layout="@layout/fragment_quiz_completion" />
+</navigation>

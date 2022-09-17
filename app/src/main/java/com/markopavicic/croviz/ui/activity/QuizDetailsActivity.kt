@@ -1,7 +1,6 @@
 package com.markopavicic.croviz.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
@@ -31,10 +30,8 @@ class QuizDetailsActivity : AppCompatActivity() {
         key = getKeyFromIntent()
         if (key.isNotEmpty()) {
             viewModel.getQuizById(key)
-            Log.d("quiz", viewModel.quiz.value.toString())
             viewModel.quiz.observe(this) { quiz ->
                 setupViews(quiz)
-                Log.d("quiz", quiz.toString())
             }
         }
 
