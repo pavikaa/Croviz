@@ -151,7 +151,7 @@
             <LinearLayout
                 android:id="@+id/list_quiz"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="160dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -172,7 +172,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvQuiz"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="160dp"
                     android:orientation="horizontal"
                     android:padding="10dp"
                     android:visibility="gone"
