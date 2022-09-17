@@ -33,7 +33,7 @@ class QuizCompletionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tvEarnedPoints.text =
-            "By completing this quiz you earned: " + viewModel.points + " points!"
+            "Quiz results: " + viewModel.points + " points!"
         binding.btnHome.setOnClickListener {
             activity?.finish()
         }

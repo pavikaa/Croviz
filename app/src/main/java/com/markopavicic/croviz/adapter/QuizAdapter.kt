@@ -16,7 +16,7 @@ import com.markopavicic.croviz.utils.Constants
 
 class QuizAdapter(
     private val context: Context,
-    private val dataset: MutableList<Quiz>
+    private val dataset: List<Quiz>
 ) :
     RecyclerView.Adapter<QuizAdapter.ItemViewHolder>() {
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {

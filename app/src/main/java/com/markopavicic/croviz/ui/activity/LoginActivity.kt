@@ -3,6 +3,7 @@ package com.markopavicic.croviz.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -95,6 +96,8 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val intent = Intent(this, MainActivity::class.java)
+                    Toast.makeText(applicationContext, "Successfully signed in", Toast.LENGTH_SHORT)
+                        .show()
                     startActivity(intent)
                     finish()
                 } else {

@@ -16,8 +16,8 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
         get() = _quiz
 
     private val _allQuizzes: MutableLiveData<MutableList<Quiz>> = MutableLiveData()
-    val allQuizzes : LiveData<MutableList<Quiz>>
-    get() = _allQuizzes
+    val allQuizzes: LiveData<MutableList<Quiz>>
+        get() = _allQuizzes
 
     private var _points = 0
 
@@ -30,7 +30,8 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
     fun getQuizById(quizId: String) {
         quizRepository.getQuiz(quizId, _quiz)
     }
-    fun getAllQuizzes(){
+
+    fun getAllQuizzes() {
         quizRepository.getAllQuizes(_allQuizzes)
     }
 

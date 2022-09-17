@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -34,10 +35,12 @@ class SettingsFragment : Fragment() {
         val currentUser = mAuth.currentUser
 
         if (currentUser != null) {
+            binding.btnClearStats.visibility = View.VISIBLE
             binding.btnSignIn.visibility = View.GONE
             binding.btnSignOut.visibility = View.VISIBLE
             binding.tvName.text = currentUser?.displayName
         } else {
+            binding.btnClearStats.visibility = View.GONE
             binding.btnSignIn.visibility = View.VISIBLE
             binding.btnSignOut.visibility = View.GONE
             binding.tvName.text = getString(R.string.logged_out_user)
@@ -55,10 +58,12 @@ class SettingsFragment : Fragment() {
                     // Respond to negative button press
                 }
                 .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                    binding.btnClearStats.visibility = View.GONE
                     binding.btnSignIn.visibility = View.VISIBLE
                     binding.btnSignOut.visibility = View.GONE
                     binding.tvName.text = getString(R.string.logged_out_user)
                     mAuth.signOut()
+                    Toast.makeText(context, "Successfully signed out", Toast.LENGTH_SHORT).show()
                 }
                 .show()
         }

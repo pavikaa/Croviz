@@ -75,8 +75,8 @@
                     android:orientation="horizontal"
                     android:padding="8dp">
 
-                    <com.google.android.material.button.MaterialButtonToggleGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/bg_category_creation"
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/bg_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:checkedButton="@id/btn_check_all"
@@ -91,6 +91,7 @@
                             android:text="All" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_check_general_knowledge"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -98,6 +99,7 @@
                             android:text="General knowledge" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_check_music"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -105,6 +107,7 @@
                             android:text="Music" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_check_tv"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -112,6 +115,7 @@
                             android:text="TV" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_check_science"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -119,6 +123,7 @@
                             android:text="Science" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_check_history"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -126,12 +131,14 @@
                             android:text="History" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_check_geography"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Geography" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_check_sport"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -140,16 +147,36 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:padding="10dp"
-                android:id="@+id/rvQuiz"
+            <LinearLayout
+                android:id="@+id/list_quiz"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/categories" />
+                app:layout_constraintTop_toBottomOf="@id/categories">
+
+                <TextView
+                    android:id="@+id/tv_no_quizzes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:text="There are no quizzes under this category"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="?android:attr/textColorSecondary"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tf_quiz_name_creation" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvQuiz"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_stats_fragment_home"
@@ -159,7 +186,7 @@
                 android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvQuiz">
+                app:layout_constraintTop_toBottomOf="@id/list_quiz">
 
                 <LinearLayout
                     android:layout_width="match_parent"
