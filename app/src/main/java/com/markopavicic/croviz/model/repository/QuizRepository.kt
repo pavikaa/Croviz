@@ -16,6 +16,7 @@ class QuizRepository {
     private val quizReference = database.getReference(Constants.QUIZ_REF)
     private val pointsReference = database.getReference(Constants.POINTS_REF)
 
+
     fun saveQuiz(quiz: Quiz, key: String) {
         quizReference
             .child(key)
@@ -96,5 +97,18 @@ class QuizRepository {
         pointsReference
             .child(Constants.POINTS_KEY)
             .setValue(ServerValue.increment(_points.toLong()))
+    }
+
+    fun endless(points: Int) {
+        if (userId != null) {
+            usersReference
+                .child(userId)
+                .child(Constants.POINTS_KEY)
+                .setValue(ServerValue.increment(points.toLong()))
+
+        }
+        pointsReference
+            .child(Constants.POINTS_KEY)
+            .setValue(ServerValue.increment(points.toLong()))
     }
 }

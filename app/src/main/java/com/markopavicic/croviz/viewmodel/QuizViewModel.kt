@@ -1,6 +1,5 @@
 package com.markopavicic.croviz.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,12 +39,17 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
     }
 
     fun completeQuiz() {
-        Log.d("results", _results.toString())
         for (result in _results) {
             _points += result.numCorrect * 10
             _points -= result.numIncorrect * 5
         }
         quizRepository.completeQuiz(quiz.value?.quizId, _points)
+    }
+
+    fun endless(results: Result) {
+        val points = results.numCorrect * 10 - results.numIncorrect * 5
+        quizRepository.endless(points)
+
     }
 }
 
