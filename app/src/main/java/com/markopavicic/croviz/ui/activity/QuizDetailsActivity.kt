@@ -34,7 +34,6 @@ class QuizDetailsActivity : AppCompatActivity() {
                 setupViews(quiz)
             }
         }
-
         setContentView(binding.root)
 
     }

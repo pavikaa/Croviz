@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/materialCardViewElevatedStyle"
+    android:id="@+id/rv_quiz_card"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="8dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#EAEAEA"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/rv_quiz_image"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:contentDescription="Content description"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:text="aaaa"
+            android:id="@+id/rv_quiz_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?android:attr/textColorSecondary" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

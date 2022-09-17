@@ -2,10 +2,13 @@ package com.markopavicic.croviz.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
@@ -14,25 +17,37 @@ import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 import com.markopavicic.croviz.R
+import com.markopavicic.croviz.adapter.QuizAdapter
 import com.markopavicic.croviz.databinding.FragmentHomeBinding
+import com.markopavicic.croviz.model.data.Quiz
+import com.markopavicic.croviz.model.repository.QuizRepository
 import com.markopavicic.croviz.ui.activity.EndlessQuizActivity
 import com.markopavicic.croviz.ui.activity.QuizActivity
 import com.markopavicic.croviz.ui.activity.QuizCreationActivity
 import com.markopavicic.croviz.ui.activity.StatsActivity
 import com.markopavicic.croviz.utils.Constants
+import com.markopavicic.croviz.viewmodel.QuizViewModel
+import com.markopavicic.croviz.viewmodel.QuizViewModelFactory
 
 
 class HomeFragment : Fragment() {
+    private val viewModel: QuizViewModel by activityViewModels {
+        QuizViewModelFactory(QuizRepository())
+    }
 
     private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
+
+    private lateinit var quizRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        quizRecyclerView = binding.rvQuiz
+        viewModel.getAllQuizzes()
         return binding.root
     }
 
@@ -58,6 +73,18 @@ class HomeFragment : Fragment() {
         binding.cardStatsFragmentHome.setOnClickListener {
             launchStatsActivity()
         }
+        quizRecyclerView = binding.rvQuiz
+
+        Log.d("allQuizzes", viewModel.allQuizzes.value.toString())
+
+        viewModel.allQuizzes.observe(viewLifecycleOwner) { allQuizzes ->
+            setupRecyclerView(allQuizzes)
+        }
+
+    }
+
+    private fun setupRecyclerView(allQuizzes: MutableList<Quiz>) {
+        context?.let { quizRecyclerView.adapter = QuizAdapter(it, allQuizzes) }
     }
 
     override fun onDestroyView() {

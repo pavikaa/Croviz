@@ -1,11 +1,9 @@
 package com.markopavicic.croviz.model.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ServerValue
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.markopavicic.croviz.model.data.Quiz
@@ -42,6 +40,40 @@ class QuizRepository {
             }
         }
         quizReference.addListenerForSingleValueEvent(quizListener)
+    }
+
+    fun getAllQuizes(liveData: MutableLiveData<MutableList<Quiz>>) {
+        val quizList = mutableListOf<Quiz>()
+        val quizEventListener = object : ChildEventListener {
+            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                val quiz = dataSnapshot.getValue(Quiz::class.java)
+                quizList.add(quiz!!)
+                liveData.postValue(quizList)
+            }
+
+            override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                val quiz = dataSnapshot.getValue(Quiz::class.java)
+                quizList.add(quiz!!)
+                liveData.postValue(quizList)
+            }
+
+            override fun onChildRemoved(dataSnapshot: DataSnapshot) {
+                val quiz = dataSnapshot.getValue(Quiz::class.java)
+                quizList.add(quiz!!)
+                liveData.postValue(quizList)
+            }
+
+            override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                val quiz = dataSnapshot.getValue(Quiz::class.java)
+                quizList.add(quiz!!)
+                liveData.postValue(quizList)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        quizReference.addChildEventListener(quizEventListener)
     }
 
     fun getKey(): String {

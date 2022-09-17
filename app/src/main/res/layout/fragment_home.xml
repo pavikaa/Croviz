@@ -141,10 +141,12 @@
             </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:padding="10dp"
                 android:id="@+id/rvQuiz"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="140dp"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/categories" />

@@ -12,6 +12,12 @@ import com.markopavicic.croviz.model.repository.QuizRepository
 class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
 
     private val _quiz: MutableLiveData<Quiz> = MutableLiveData()
+    val quiz: LiveData<Quiz>
+        get() = _quiz
+
+    private val _allQuizzes: MutableLiveData<MutableList<Quiz>> = MutableLiveData()
+    val allQuizzes : LiveData<MutableList<Quiz>>
+    get() = _allQuizzes
 
     private var _points = 0
 
@@ -20,11 +26,12 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
 
     private var _results = mutableListOf<Result>()
 
-    val quiz: LiveData<Quiz>
-        get() = _quiz
 
     fun getQuizById(quizId: String) {
         quizRepository.getQuiz(quizId, _quiz)
+    }
+    fun getAllQuizzes(){
+        quizRepository.getAllQuizes(_allQuizzes)
     }
 
     fun postAnswers(result: Result) {
