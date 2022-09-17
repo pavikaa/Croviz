@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -54,14 +55,15 @@ class QuizRepository {
                 .child(Constants.USER_QUIZ_PATH)
                 .child(quizId!!)
                 .setValue("")
+
             usersReference
                 .child(userId)
                 .child(Constants.POINTS_KEY)
-                .setValue(_points)
+                .setValue(ServerValue.increment(_points.toLong()))
 
         }
         pointsReference
             .child(Constants.POINTS_KEY)
-            .setValue(_points)
+            .setValue(ServerValue.increment(_points.toLong()))
     }
 }
