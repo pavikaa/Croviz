@@ -65,9 +65,9 @@ class QuizCreationViewModel(private val quizRepository: QuizRepository) : ViewMo
         if (answers.value?.isEmpty()!!)
             return false
         for (answer in answers.value!!) {
-            if (answer.isCorrect)
+            if (answer.correct)
                 oneCorrect = true
-            if (!answer.isCorrect)
+            if (!answer.correct)
                 oneIncorrect = true
         }
         if (!oneCorrect || !oneIncorrect)

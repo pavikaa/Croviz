@@ -11,21 +11,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.model.data.Answer
-import com.markopavicic.croviz.model.data.Result
 
-class AnswerAdapter(private val context: Context, private val dataset: List<Answer>) :
-    RecyclerView.Adapter<AnswerAdapter.ItemViewHolder>() {
-    private var numCorrect = 0
-    private var numIncorrect = 0
-
+class AnswerCreationAdapter(
+    private val context: Context,
+    private val dataset: MutableList<Answer>
+) :
+    RecyclerView.Adapter<AnswerCreationAdapter.ItemViewHolder>() {
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvAnswer: TextView = view.findViewById(R.id.tv_answer)
-        val card: MaterialCardView = view.findViewById(R.id.answer_card)
+        val tvAnswer: TextView = view.findViewById(R.id.tv_creation_answer)
+        val btnRemoveAnswer: TextView = view.findViewById(R.id.btn_creation_remove_answer)
+        val card: MaterialCardView = view.findViewById(R.id.creation_answer_card)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_answer, parent, false)
+            .inflate(R.layout.list_answer_creation, parent, false)
         return ItemViewHolder(adapterLayout)
     }
 
@@ -33,29 +33,17 @@ class AnswerAdapter(private val context: Context, private val dataset: List<Answ
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
         holder.tvAnswer.text = item.answer
-
-        holder.card.setOnClickListener {
-            holder.card.toggle()
-            if (holder.card.isChecked) {
-                if (item.correct)
-                    numCorrect += 1
-                else
-                    numIncorrect += 1
-            } else {
-                if (item.correct)
-                    numCorrect -= 1
-                else
-                    numIncorrect -= 1
-            }
-
+        when (item.correct) {
+            true -> holder.card.strokeColor = context.getColor(R.color.green)
+            else -> holder.card.strokeColor = context.getColor(R.color.red)
+        }
+        holder.btnRemoveAnswer.setOnClickListener {
+            dataset.remove(item)
+            notifyDataSetChanged()
         }
     }
 
     override fun getItemCount(): Int {
         return dataset.size
-    }
-
-    fun getResults(): Result {
-        return Result(numCorrect, numIncorrect)
     }
 }

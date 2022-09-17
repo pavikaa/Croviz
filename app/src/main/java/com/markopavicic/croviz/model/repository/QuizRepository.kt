@@ -16,6 +16,7 @@ class QuizRepository {
 
     private val usersReference = database.getReference(Constants.USERS_REF)
     private val quizReference = database.getReference(Constants.QUIZ_REF)
+    private val pointsReference = database.getReference(Constants.POINTS_REF)
 
     fun saveQuiz(quiz: Quiz, key: String) {
         quizReference
@@ -24,7 +25,7 @@ class QuizRepository {
 
         usersReference
             .child(userId!!)
-            .child(Constants.USER_QUIZ_PATH)
+            .child(Constants.USER_CREATED_QUIZ_PATH)
             .child(quiz.quizId)
             .setValue("")
     }
@@ -44,5 +45,23 @@ class QuizRepository {
 
     fun getKey(): String {
         return quizReference.push().key!!
+    }
+
+    fun completeQuiz(quizId: String?, _points: Int) {
+        if (userId != null) {
+            usersReference
+                .child(userId)
+                .child(Constants.USER_QUIZ_PATH)
+                .child(quizId!!)
+                .setValue("")
+            usersReference
+                .child(userId)
+                .child(Constants.POINTS_KEY)
+                .setValue(_points)
+
+        }
+        pointsReference
+            .child(Constants.POINTS_KEY)
+            .setValue(_points)
     }
 }

@@ -11,9 +11,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
-import com.example.travelspot.adapter.AnswerAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.markopavicic.croviz.R
+import com.markopavicic.croviz.adapter.AnswerCreationAdapter
 import com.markopavicic.croviz.databinding.FragmentQuizCreationQuestionsBinding
 import com.markopavicic.croviz.model.data.Answer
 import com.markopavicic.croviz.model.repository.QuizRepository
@@ -124,7 +124,7 @@ class QuizCreationQuestionsFragment : Fragment() {
     }
 
     private fun setupRecycler(answers: LiveData<MutableList<Answer>>) {
-        answersRecyclerView.adapter = context?.let { AnswerAdapter(it, answers.value!!) }
+        answersRecyclerView.adapter = context?.let { AnswerCreationAdapter(it, answers.value!!) }
     }
 
     private fun clearAnswers() {

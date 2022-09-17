@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.FragmentQuizPreparationBinding
 import com.markopavicic.croviz.model.data.Quiz
@@ -18,10 +19,10 @@ class QuizPreparationFragment : Fragment() {
     private var _binding: FragmentQuizPreparationBinding? = null
 
     private val binding get() = _binding!!
-
     private val viewModel: QuizViewModel by activityViewModels {
         QuizViewModelFactory(QuizRepository())
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +75,9 @@ class QuizPreparationFragment : Fragment() {
                 binding.quizImage.setImageDrawable(context?.getDrawable(R.drawable.sports))
                 binding.quizCategory.text = getText(R.string.sports)
             }
+        }
+        binding.btnStartQuiz.setOnClickListener {
+            findNavController().navigate(R.id.action_quizPreparationFragment_to_questionFragment)
         }
     }
 }
