@@ -8,13 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanIntentResult
+import com.journeyapps.barcodescanner.ScanOptions
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.FragmentHomeBinding
 import com.markopavicic.croviz.ui.activity.EndlessQuizActivity
-import com.markopavicic.croviz.ui.activity.QrActivity
+import com.markopavicic.croviz.ui.activity.QuizActivity
 import com.markopavicic.croviz.ui.activity.QuizCreationActivity
 import com.markopavicic.croviz.ui.activity.StatsActivity
+import com.markopavicic.croviz.utils.Constants
+
 
 class HomeFragment : Fragment() {
 
@@ -87,12 +93,31 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun launchScanQr() {
-        val intent = Intent(context, QrActivity::class.java)
-        startActivity(intent)
+        val options = ScanOptions()
+        options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
+        options.setPrompt("Scan quiz QR code")
+        options.setCameraId(0) // Use a specific camera of the device
+        options.setBeepEnabled(false)
+        options.setBarcodeImageEnabled(true)
+        barcodeLauncher.launch(options)
     }
 
     private fun launchNewQuiz() {
         val intent = Intent(context, QuizCreationActivity::class.java)
         startActivity(intent)
+    }
+
+    // Register the launcher and result handler
+    private val barcodeLauncher = registerForActivityResult(
+        ScanContract()
+    ) { result: ScanIntentResult ->
+        if (result.contents == null) {
+            Snackbar.make(requireView(), "Cancelled", Snackbar.LENGTH_LONG)
+                .show()
+        } else {
+            val intent = Intent(context, QuizActivity::class.java)
+            intent.putExtra(Constants.QUIZ_ID_KEY, result.contents)
+            startActivity(intent)
+        }
     }
 }

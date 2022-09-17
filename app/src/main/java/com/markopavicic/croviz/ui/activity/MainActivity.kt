@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
-
         if (Prefs.checkIfFirstRun())
             Prefs.firstRun()
     }

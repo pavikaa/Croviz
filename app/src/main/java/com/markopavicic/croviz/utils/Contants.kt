@@ -8,5 +8,6 @@ class Constants {
         const val QUIZ_ID_KEY = "quizId"
         const val USERS_REF = "users"
         const val QUIZ_REF = "quiz"
+        const val USER_QUIZ_PATH = "quizzes"
     }
 }

@@ -5,9 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.markopavicic.croviz.R
+import com.markopavicic.croviz.databinding.FragmentQuizPreparationBinding
+import com.markopavicic.croviz.utils.Constants
 
 class QuizPreparationFragment : Fragment() {
+
+    private var _binding: FragmentQuizPreparationBinding? = null
+
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -16,6 +22,14 @@ class QuizPreparationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_quiz_preparation, container, false)
+        _binding = FragmentQuizPreparationBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val key = activity?.intent?.getStringExtra(Constants.QUIZ_ID_KEY)
+        binding.key.text = key
+
     }
 }
