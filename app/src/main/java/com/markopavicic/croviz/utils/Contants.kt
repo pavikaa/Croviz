@@ -2,6 +2,7 @@ package com.markopavicic.croviz.utils
 
 class Constants {
     companion object {
+        const val USER_QUESTIONS_PATH = "questionIds"
         const val POINTS_REF = "points"
         const val POINTS_KEY = "points"
         const val SHARED_PREFERENCES_KEY = "sharedPrefs"

@@ -12,9 +12,7 @@ import kotlin.random.Random
 
 class EndlessViewModel(private val quizRepository: QuizRepository) : ViewModel() {
 
-    private val _quiz: MutableLiveData<Quiz> = MutableLiveData()
-    val quiz: LiveData<Quiz>
-        get() = _quiz
+    private lateinit var currentQuiz: Quiz
 
     private val _allQuizzes: MutableLiveData<MutableList<Quiz>> = MutableLiveData()
     val allQuizzes: LiveData<MutableList<Quiz>>
@@ -27,13 +25,14 @@ class EndlessViewModel(private val quizRepository: QuizRepository) : ViewModel()
     fun getRandomQuestion(): Question {
         val randomQuizPosition = allQuizzes.value?.let { Random.nextInt(0, it.size) }
         val randomQuiz = randomQuizPosition?.let { allQuizzes.value?.get(it) }
+        currentQuiz = randomQuiz!!
         val randomQuestionPosition = randomQuiz?.questions?.let { Random.nextInt(0, it.size) }
         return randomQuestionPosition?.let { randomQuiz?.questions?.get(it) }!!
     }
 
     fun finishQuestion(results: Result) {
         val points = results.numCorrect * 10 - results.numIncorrect * 5
-        quizRepository.endless(points)
+        quizRepository.endless(points, currentQuiz.quizId)
 
     }
 

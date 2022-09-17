@@ -45,12 +45,6 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
         }
         quizRepository.completeQuiz(quiz.value?.quizId, _points)
     }
-
-    fun endless(results: Result) {
-        val points = results.numCorrect * 10 - results.numIncorrect * 5
-        quizRepository.endless(points)
-
-    }
 }
 
 class QuizViewModelFactory(private val quizRepository: QuizRepository) :

@@ -1,5 +1,6 @@
 package com.markopavicic.croviz.model.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -16,6 +17,9 @@ class QuizRepository {
     private val quizReference = database.getReference(Constants.QUIZ_REF)
     private val pointsReference = database.getReference(Constants.POINTS_REF)
 
+
+    private lateinit var userQuestions: MutableList<String>
+    private lateinit var userQuizzes: MutableList<String>
 
     fun saveQuiz(quiz: Quiz, key: String) {
         quizReference
@@ -59,7 +63,7 @@ class QuizRepository {
 
             override fun onChildRemoved(dataSnapshot: DataSnapshot) {
                 val quiz = dataSnapshot.getValue(Quiz::class.java)
-                quizList.add(quiz!!)
+                quizList.remove(quiz!!)
                 liveData.postValue(quizList)
             }
 
@@ -92,23 +96,32 @@ class QuizRepository {
                 .child(userId)
                 .child(Constants.POINTS_KEY)
                 .setValue(ServerValue.increment(_points.toLong()))
-
         }
         pointsReference
             .child(Constants.POINTS_KEY)
             .setValue(ServerValue.increment(_points.toLong()))
     }
 
-    fun endless(points: Int) {
+    fun endless(points: Int, quizId: String) {
         if (userId != null) {
             usersReference
                 .child(userId)
                 .child(Constants.POINTS_KEY)
                 .setValue(ServerValue.increment(points.toLong()))
-
+            addQuestionId(quizId)
         }
         pointsReference
             .child(Constants.POINTS_KEY)
             .setValue(ServerValue.increment(points.toLong()))
+    }
+
+    private fun addQuestionId(quizId: String) {
+        if (userId != null) {
+            usersReference
+                .child(userId)
+                .child(Constants.USER_QUESTIONS_PATH)
+                .child(quizId)
+                .setValue("")
+        }
     }
 }
