@@ -1,13 +1,18 @@
 package com.markopavicic.croviz.ui.fragment
 
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.adapter.AnswerAdapter
 import com.markopavicic.croviz.databinding.FragmentQuestionBinding
@@ -41,6 +46,7 @@ class QuestionFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.quiz.observe(viewLifecycleOwner) { quiz ->
@@ -48,6 +54,7 @@ class QuestionFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun setupViews(quiz: Quiz) {
         binding.tvQuestionNumber.text =
             "Question " + (questionNo + 1).toString() + " out of " + quiz.questions.size.toString()
@@ -56,13 +63,32 @@ class QuestionFragment : Fragment() {
         answers = quiz.questions[0].answers
 
         binding.btnAnswer.setOnClickListener {
-            if (questionNo + 1 < quiz.questions.size) {
-                nextQuestion(quiz)
-            } else {
-                completeQuiz()
-            }
+            showCorrectAnswers()
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    if (questionNo + 1 < quiz.questions.size) {
+                        nextQuestion(quiz)
+                    } else {
+                        completeQuiz()
+                    }
+                },
+                2000 // value in milliseconds
+            )
         }
         setupRecycler(answers)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun showCorrectAnswers() {
+        for (position in 0 until answersRecyclerView.childCount) {
+            val holder = answersRecyclerView.findViewHolderForAdapterPosition(position)
+            if (answers[position].correct) {
+                holder?.itemView?.findViewById<MaterialCardView>(R.id.answer_card)?.strokeColor =
+                    context?.getColor(R.color.green)!!
+            } else
+                holder?.itemView?.findViewById<MaterialCardView>(R.id.answer_card)?.strokeColor =
+                    context?.getColor(R.color.red)!!
+        }
     }
 
     private fun nextQuestion(quiz: Quiz) {

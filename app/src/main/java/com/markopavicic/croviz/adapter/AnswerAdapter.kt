@@ -47,7 +47,6 @@ class AnswerAdapter(private val context: Context, private val dataset: List<Answ
                 else
                     numIncorrect -= 1
             }
-
         }
     }
 
