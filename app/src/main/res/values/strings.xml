@@ -92,4 +92,9 @@
     <string name="global_completed_quizzes">Global completed quizzes</string>
     <string name="your_completed_questions">Your completed questions</string>
     <string name="global_completed_questions">Global completed questions</string>
+    <string name="forbidden_stats">You need to be signed in to save your stats</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="sign_out_success">Successfully signed out</string>
+    <string name="clear_stats_description">You are about to clear your stats. Do you want to continue?</string>
+    <string name="clear_stats_success">Successfully cleared stats</string>
 </resources>

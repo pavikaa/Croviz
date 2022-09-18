@@ -56,10 +56,10 @@ class SettingsFragment : Fragment() {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle(getString(R.string.sign_out))
                 .setMessage(getString(R.string.sign_out_details))
-                .setNegativeButton(getString(R.string.no)) { dialog, which ->
+                .setNegativeButton(getString(R.string.no)) { _, _ ->
                     // Respond to negative button press
                 }
-                .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
                     binding.btnClearStats.visibility = View.GONE
                     binding.btnSignIn.visibility = View.VISIBLE
                     binding.btnSignOut.visibility = View.GONE
@@ -68,20 +68,28 @@ class SettingsFragment : Fragment() {
                     val intent = Intent(context, MainActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
-                    Toast.makeText(context, "Successfully signed out", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.sign_out_success),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 .show()
         }
         binding.btnClearStats.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Clears stats")
-                .setMessage("You are about to clear your stats. Do you want to continue?")
-                .setNegativeButton(getString(R.string.no)) { dialog, which ->
+                .setTitle(getString(R.string.clear_stats))
+                .setMessage(getString(R.string.clear_stats_description))
+                .setNegativeButton(getString(R.string.no)) { _, _ ->
                     // Respond to negative button press
                 }
-                .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
                     QuizRepository().clearStats()
-                    Toast.makeText(context, "Successfully cleared stats", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.clear_stats_success),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 .show()
         }
@@ -90,7 +98,7 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.themeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.themeSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 setTheme(AppCompatDelegate.MODE_NIGHT_YES)
             } else {

@@ -66,7 +66,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.fab.setOnClickListener { view ->
+        binding.fab.setOnClickListener { _ ->
             val modalBottomSheet = ModalBottomSheet()
             modalBottomSheet.show(childFragmentManager, ModalBottomSheet.TAG)
         }
@@ -100,13 +100,13 @@ class HomeFragment : Fragment() {
         } else
             Toast.makeText(
                 context,
-                "You need to be signed in to save your stats",
+                getString(R.string.forbidden_stats),
                 Toast.LENGTH_SHORT
             ).show()
     }
 
     private fun quizFilter() {
-        binding.bgCategory.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.bgCategory.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
                     R.id.btn_check_general_knowledge -> {
@@ -184,7 +184,7 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
     private fun launchScanQr() {
         val options = ScanOptions()
         options.setDesiredBarcodeFormats(ScanOptions.QR_CODE)
-        options.setPrompt("Scan quiz QR code")
+        options.setPrompt(getString(R.string.scan_qr))
         options.setCameraId(0) // Use a specific camera of the device
         options.setBeepEnabled(false)
         options.setBarcodeImageEnabled(true)
@@ -200,7 +200,7 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
         ScanContract()
     ) { result: ScanIntentResult ->
         if (result.contents == null) {
-            Snackbar.make(requireView(), "Cancelled", Snackbar.LENGTH_LONG)
+            Snackbar.make(requireView(), getString(R.string.cancelled), Snackbar.LENGTH_LONG)
                 .show()
         } else {
             val intent = Intent(context, QuizActivity::class.java)

@@ -58,11 +58,11 @@ class QuizCreationQuestionsFragment : Fragment() {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle(getString(R.string.add_question))
                 .setMessage(getString(R.string.add_question_details))
-                .setNegativeButton(getString(R.string.finish_quiz_creation)) { dialog, which ->
+                .setNegativeButton(getString(R.string.finish_quiz_creation)) { _, _ ->
                     if (addQuestion())
                         finishQuizCreation()
                 }
-                .setPositiveButton(getString(R.string.add_another_question)) { dialog, which ->
+                .setPositiveButton(getString(R.string.add_another_question)) { _, _ ->
                     if (addQuestion())
                         addAnotherQuestion()
                 }

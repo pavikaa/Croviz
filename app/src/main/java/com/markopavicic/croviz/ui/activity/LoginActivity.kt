@@ -49,10 +49,10 @@ class LoginActivity : AppCompatActivity() {
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.skip_sign_in))
             .setMessage(getString(R.string.skip_sign_in_details))
-            .setNegativeButton(getString(R.string.no)) { dialog, which ->
+            .setNegativeButton(getString(R.string.no)) { _, _ ->
                 // Respond to negative button press
             }
-            .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
