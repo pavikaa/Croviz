@@ -28,7 +28,7 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         if (Prefs.getThemeFromPrefs() == AppCompatDelegate.MODE_NIGHT_YES)
             binding.themeSwitch.isChecked = true
@@ -40,7 +40,7 @@ class SettingsFragment : Fragment() {
             binding.btnClearStats.visibility = View.VISIBLE
             binding.btnSignIn.visibility = View.GONE
             binding.btnSignOut.visibility = View.VISIBLE
-            binding.tvName.text = currentUser?.displayName
+            binding.tvName.text = currentUser.displayName
         } else {
             binding.btnClearStats.visibility = View.GONE
             binding.btnSignIn.visibility = View.VISIBLE

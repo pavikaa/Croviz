@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="32dp">
 
             <TextView
@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Statistics"
+                android:text="@string/statistics_label"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="?android:attr/textColorSecondary"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="Score"
+                        android:text="@string/score"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="Total answers"
+                        android:text="@string/total_answers"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -110,7 +110,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="Correct answers"
+                        android:text="@string/correct_answers"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -139,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="Incorrect answers"
+                        android:text="@string/incorrect_answers"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -168,13 +168,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="Quizzes"
+                        android:text="@string/quizzes"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_stats_num_questions"
                 style="?attr/materialCardViewElevatedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -197,7 +196,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="Questions"
+                        android:text="@string/questions"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

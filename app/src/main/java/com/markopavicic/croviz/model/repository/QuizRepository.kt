@@ -48,30 +48,30 @@ class QuizRepository {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var userScore = 0.toLong()
                 if (dataSnapshot.child(userId!!).child(Constants.POINTS_KEY).exists())
-                    userScore = dataSnapshot.child(userId!!).child(Constants.POINTS_KEY)
+                    userScore = dataSnapshot.child(userId).child(Constants.POINTS_KEY)
                         .getValue(Long::class.java)!!
 
                 var userCorrectAnswers = 0.toLong()
-                if (dataSnapshot.child(userId!!).child(Constants.CORRECT_ANSWERS_PATH).exists())
+                if (dataSnapshot.child(userId).child(Constants.CORRECT_ANSWERS_PATH).exists())
                     userCorrectAnswers =
-                        dataSnapshot.child(userId!!).child(Constants.CORRECT_ANSWERS_PATH)
+                        dataSnapshot.child(userId).child(Constants.CORRECT_ANSWERS_PATH)
                             .getValue(Long::class.java)!!
 
                 var userIncorrectAnswers = 0.toLong()
-                if (dataSnapshot.child(userId!!).child(Constants.INCORRECT_ANSWERS_PATH).exists())
+                if (dataSnapshot.child(userId).child(Constants.INCORRECT_ANSWERS_PATH).exists())
                     userIncorrectAnswers =
-                        dataSnapshot.child(userId!!).child(Constants.INCORRECT_ANSWERS_PATH)
+                        dataSnapshot.child(userId).child(Constants.INCORRECT_ANSWERS_PATH)
                             .getValue(Long::class.java)!!
 
                 var userCompletedQuizzes = 0.toLong()
-                if (dataSnapshot.child(userId!!).child(Constants.COMPLETED_QUIZZES).exists())
+                if (dataSnapshot.child(userId).child(Constants.COMPLETED_QUIZZES).exists())
                     userCompletedQuizzes =
-                        dataSnapshot.child(userId!!).child(Constants.COMPLETED_QUIZZES)
+                        dataSnapshot.child(userId).child(Constants.COMPLETED_QUIZZES)
                             .getValue(Long::class.java)!!
                 var userCompletedQuestions = 0.toLong()
-                if (dataSnapshot.child(userId!!).child(Constants.USER_COMPLETED_QUESTIONS).exists())
+                if (dataSnapshot.child(userId).child(Constants.USER_COMPLETED_QUESTIONS).exists())
                     userCompletedQuestions =
-                        dataSnapshot.child(userId!!).child(Constants.COMPLETED_QUIZZES)
+                        dataSnapshot.child(userId).child(Constants.COMPLETED_QUIZZES)
                             .getValue(Long::class.java)!!
 
                 var globalScore = 0.toLong()
@@ -233,12 +233,13 @@ class QuizRepository {
             .child(questionId!!)
             .setValue("")
         usersReference
-            .child(userId!!)
+            .child(userId)
             .child(Constants.USER_COMPLETED_QUESTIONS)
             .setValue(ServerValue.increment(1))
     }
-    fun clearStats(){
-        if(userId!=null){
+
+    fun clearStats() {
+        if (userId != null) {
             usersReference
                 .child(userId)
                 .child(Constants.POINTS_KEY)
@@ -256,7 +257,7 @@ class QuizRepository {
                 .child(Constants.COMPLETED_QUIZZES)
                 .setValue(0.toLong())
             usersReference
-                .child(userId!!)
+                .child(userId)
                 .child(Constants.USER_COMPLETED_QUESTIONS)
                 .setValue(0.toLong())
         }

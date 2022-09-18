@@ -40,7 +40,7 @@ class QuestionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentQuestionBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -57,7 +57,7 @@ class QuestionFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setupViews(quiz: Quiz) {
         binding.tvQuestionNumber.text =
-            "Question " + (questionNo + 1).toString() + " out of " + quiz.questions.size.toString()
+            getString(R.string.question) + (questionNo + 1).toString() + getString(R.string.out_of) + quiz.questions.size.toString()
         answersRecyclerView = binding.rvAnswers
         binding.tvQuestion.text = quiz.questions[0].question
         answers = quiz.questions[0].answers
@@ -99,7 +99,7 @@ class QuestionFragment : Fragment() {
         viewModel.finishQuestion(adapter.getResults(), quiz.questions[questionNo].questionId)
         questionNo += 1
         binding.tvQuestionNumber.text =
-            "Question " + (questionNo + 1).toString() + " out of " + quiz.questions.size.toString()
+            getString(R.string.question) + (questionNo + 1).toString() + getString(R.string.out_of) + quiz.questions.size.toString()
         binding.tvQuestion.text = quiz.questions[questionNo].question
         answers = quiz.questions[questionNo].answers
         setupRecycler(answers)

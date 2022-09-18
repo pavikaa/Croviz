@@ -24,7 +24,7 @@
                 android:id="@+id/quiz_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:contentDescription="Content description"
+                android:contentDescription="@string/quiz_image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/success" />
 
@@ -37,14 +37,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="You completed the quiz!"
+                    android:text="@string/quiz_complete"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Cogratulations!"
+                    android:text="@string/congratulations"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
 
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Go to home page"
+        android:text="@string/home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_complete" />

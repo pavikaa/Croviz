@@ -19,8 +19,7 @@ object Prefs {
 
     fun getThemeFromPrefs(): Int {
         val defaultValue = -1
-        val csrf = preferences.getInt(Constants.THEME_KEY, defaultValue)!!
-        return csrf
+        return preferences.getInt(Constants.THEME_KEY, defaultValue)
     }
 
     fun firstRun() {
@@ -32,7 +31,6 @@ object Prefs {
 
     fun checkIfFirstRun(): Boolean {
         val defaultValue = true
-        val firstRun = preferences.getBoolean(Constants.FIRST_RUN_KEY, defaultValue)!!
-        return firstRun
+        return preferences.getBoolean(Constants.FIRST_RUN_KEY, defaultValue)
     }
 }

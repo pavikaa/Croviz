@@ -25,7 +25,7 @@ class QuizCreationDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentQuizCreationDetailsBinding.inflate(inflater, container, false)
         navController = findNavController()
         return binding.root
@@ -56,7 +56,7 @@ class QuizCreationDetailsFragment : Fragment() {
         }
         val quizName = tfName.editText?.text.toString()
         val checkedButtonId = binding.bgCategoryCreation.checkedButtonId
-        var category = getCategory(checkedButtonId)
+        val category = getCategory(checkedButtonId)
         val hideCreator = binding.chkAnonQuizCreation.isChecked
         quizDetails = QuizDetails(quizName, category, hideCreator)
         return true

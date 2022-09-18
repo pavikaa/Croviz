@@ -12,4 +12,4 @@ data class Stats(
     val globalCompletedQuizzes: Long,
     val globalCompletedQuestions: Long
 
-    )
+)

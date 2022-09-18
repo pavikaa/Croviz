@@ -25,7 +25,7 @@
                 android:id="@+id/quiz_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:contentDescription="Content description"
+                android:contentDescription="@string/quiz_image"
                 android:scaleType="centerCrop" />
 
             <LinearLayout
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Each question has one or more correct answer\nCorrect answers give you 10 points\nIncorrect answers reduce your points by 5"
+            android:text="@string/quiz_description"
             android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="?android:attr/textColorSecondary" />
 
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Start quiz"
+        android:text="@string/start_quiz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_quiz_prep" />

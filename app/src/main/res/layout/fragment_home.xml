@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="32dp">
 
             <com.google.android.material.card.MaterialCardView
@@ -34,7 +34,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:contentDescription="Content description"
+                        android:contentDescription="@string/endless_quiz"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/endless" />
 
@@ -47,14 +47,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Endless"
+                            android:text="@string/endless"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Answer random questions endlessly!"
+                            android:text="@string/endless_description"
                             android:textAppearance="?attr/textAppearanceBody2"
                             android:textColor="?android:attr/textColorSecondary" />
                     </LinearLayout>
@@ -71,7 +71,7 @@
                 app:layout_constraintTop_toBottomOf="@id/card_endless_fragment_home">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:padding="8dp">
@@ -88,62 +88,62 @@
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="All" />
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/all" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_check_general_knowledge"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="General knowledge" />
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/general_knowledge" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_check_music"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="Music" />
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/music" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_check_tv"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="TV" />
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/tv" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_check_science"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="Science" />
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/science" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_check_history"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="History" />
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/history" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_check_geography"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Geography" />
+                            android:text="@string/geography" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_check_sport"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Sport" />
+                            android:text="@string/sports" />
                     </com.google.android.material.button.MaterialButtonToggleGroup>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -163,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="32dp"
-                    android:text="There are no quizzes under this category"
+                    android:text="@string/no_quizzes"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="?android:attr/textColorSecondary"
                     app:layout_constraintStart_toStartOf="parent"
@@ -197,7 +197,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:contentDescription="Content description"
+                        android:contentDescription="@string/statistics_label"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/stats" />
 
@@ -210,14 +210,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Statistics"
+                            android:text="@string/statistics_label"
                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Check how you compare with other players"
+                            android:text="@string/statistics_description"
                             android:textAppearance="?attr/textAppearanceBody2"
                             android:textColor="?android:attr/textColorSecondary" />
                     </LinearLayout>
@@ -233,6 +233,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="36dp"
+        android:contentDescription="@string/fab_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />

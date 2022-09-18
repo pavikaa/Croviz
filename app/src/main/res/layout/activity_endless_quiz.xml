@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Question"
+        android:text="@string/question_label"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintBottom_toTopOf="@id/card_quiz_question"
@@ -37,8 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:gravity="center"
             android:padding="8dp"
-            android:text="Question"
+            android:text="@string/no_question"
             android:textAppearance="?attr/textAppearanceHeadline5" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="8dp"
-        android:text="Choose one or more answer"
+        android:text="@string/choose_answer"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:text="Submit answers"
+        android:text="@string/submit_answers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

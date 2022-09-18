@@ -5,7 +5,7 @@
     style="?attr/materialCardViewOutlinedStyle"
     android:layout_width="150dp"
     android:layout_height="wrap_content"
-    android:layout_marginRight="8dp"
+    android:layout_marginEnd="8dp"
     app:cardElevation="0dp"
     app:strokeColor="#EAEAEA"
     app:strokeWidth="1dp">
@@ -19,7 +19,7 @@
             android:id="@+id/rv_quiz_image"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:contentDescription="Content description"
+            android:contentDescription="@string/quiz_image"
             android:scaleType="fitXY" />
 
         <TextView
@@ -28,7 +28,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:text="aaaa"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?android:attr/textColorSecondary" />
     </LinearLayout>
