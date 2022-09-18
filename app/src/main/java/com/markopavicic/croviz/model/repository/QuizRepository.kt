@@ -71,7 +71,7 @@ class QuizRepository {
                 var userCompletedQuestions = 0.toLong()
                 if (dataSnapshot.child(userId).child(Constants.USER_COMPLETED_QUESTIONS).exists())
                     userCompletedQuestions =
-                        dataSnapshot.child(userId).child(Constants.COMPLETED_QUIZZES)
+                        dataSnapshot.child(userId).child(Constants.USER_COMPLETED_QUESTIONS)
                             .getValue(Long::class.java)!!
 
                 var globalScore = 0.toLong()
