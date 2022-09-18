@@ -39,11 +39,13 @@ class StatsActivity : AppCompatActivity() {
         val userColor = ContextCompat.getColor(this, R.color.light_blue)
         val globalColor = ContextCompat.getColor(this, R.color.navy_blue)
         var barChart = binding.scoreBarChart
+        barChart.axisRight.textColor = Color.GRAY
+        barChart.axisLeft.textColor = Color.GRAY
+        barChart.legend.textColor = Color.GRAY
         barChart.setTouchEnabled(false)
         var barEntryUser = BarEntry(1f, stats.userScore.toFloat())
         var barEntryGlobal = BarEntry(2f, stats.globalScore.toFloat())
         var userDataSet = BarDataSet(mutableListOf(barEntryUser), "Your score")
-        userDataSet.color=userColor
         var globalDataSet = BarDataSet(mutableListOf(barEntryGlobal), "Global score")
         globalDataSet.color=globalColor
         var barData = BarData(listOf(userDataSet,globalDataSet))
@@ -53,6 +55,9 @@ class StatsActivity : AppCompatActivity() {
         barChart.invalidate()
 
         barChart = binding.totalAnswersBarChart
+        barChart.axisRight.textColor = Color.GRAY
+        barChart.axisLeft.textColor = Color.GRAY
+        barChart.legend.textColor = Color.GRAY
         barChart.setTouchEnabled(false)
         barEntryUser = BarEntry(1f, (stats.userCorrectAnswers+stats.userIncorrectAnswers).toFloat())
         barEntryGlobal = BarEntry(2f, (stats.globalCorrectAnswers+stats.globalIncorrectAnswers).toFloat())
@@ -67,6 +72,9 @@ class StatsActivity : AppCompatActivity() {
         barChart.invalidate()
 
         barChart = binding.correctAnswersBarChart
+        barChart.axisRight.textColor = Color.GRAY
+        barChart.axisLeft.textColor = Color.GRAY
+        barChart.legend.textColor = Color.GRAY
         barChart.setTouchEnabled(false)
         barEntryUser = BarEntry(1f, (stats.userCorrectAnswers).toFloat())
         barEntryGlobal = BarEntry(2f, (stats.globalCorrectAnswers).toFloat())
@@ -81,6 +89,9 @@ class StatsActivity : AppCompatActivity() {
         barChart.invalidate()
 
         barChart = binding.incorrectAnswersBarChart
+        barChart.axisRight.textColor = Color.GRAY
+        barChart.axisLeft.textColor = Color.GRAY
+        barChart.legend.textColor = Color.GRAY
         barChart.setTouchEnabled(false)
         barEntryUser = BarEntry(1f, (stats.userIncorrectAnswers).toFloat())
         barEntryGlobal = BarEntry(2f, (stats.globalIncorrectAnswers).toFloat())
@@ -95,6 +106,9 @@ class StatsActivity : AppCompatActivity() {
         barChart.invalidate()
 
         barChart = binding.numQuizzesBarChart
+        barChart.axisRight.textColor = Color.GRAY
+        barChart.axisLeft.textColor = Color.GRAY
+        barChart.legend.textColor = Color.GRAY
         barChart.setTouchEnabled(false)
         barEntryUser = BarEntry(1f, (stats.userCompletedQuizzes).toFloat())
         barEntryGlobal = BarEntry(2f, (stats.globalCompletedQuizzes).toFloat())
@@ -109,6 +123,9 @@ class StatsActivity : AppCompatActivity() {
         barChart.invalidate()
 
         barChart = binding.numQuestionsBarChart
+        barChart.axisRight.textColor = Color.GRAY
+        barChart.axisLeft.textColor = Color.GRAY
+        barChart.legend.textColor = Color.GRAY
         barChart.setTouchEnabled(false)
         barEntryUser = BarEntry(1f, (stats.userCompletedQuestions).toFloat())
         barEntryGlobal = BarEntry(2f, (stats.globalCompletedQuestions).toFloat())

@@ -237,5 +237,29 @@ class QuizRepository {
             .child(Constants.USER_COMPLETED_QUESTIONS)
             .setValue(ServerValue.increment(1))
     }
+    fun clearStats(){
+        if(userId!=null){
+            usersReference
+                .child(userId)
+                .child(Constants.POINTS_KEY)
+                .setValue(0.toLong())
+            usersReference
+                .child(userId)
+                .child(Constants.CORRECT_ANSWERS_PATH)
+                .setValue(0.toLong())
+            usersReference
+                .child(userId)
+                .child(Constants.INCORRECT_ANSWERS_PATH)
+                .setValue(0.toLong())
+            usersReference
+                .child(userId)
+                .child(Constants.COMPLETED_QUIZZES)
+                .setValue(0.toLong())
+            usersReference
+                .child(userId!!)
+                .child(Constants.USER_COMPLETED_QUESTIONS)
+                .setValue(0.toLong())
+        }
+    }
 
 }

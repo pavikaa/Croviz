@@ -12,7 +12,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.FragmentSettingsBinding
+import com.markopavicic.croviz.model.repository.QuizRepository
 import com.markopavicic.croviz.ui.activity.LoginActivity
+import com.markopavicic.croviz.ui.activity.MainActivity
 import com.markopavicic.croviz.utils.Prefs
 
 class SettingsFragment : Fragment() {
@@ -63,7 +65,23 @@ class SettingsFragment : Fragment() {
                     binding.btnSignOut.visibility = View.GONE
                     binding.tvName.text = getString(R.string.logged_out_user)
                     mAuth.signOut()
+                    val intent = Intent(context, MainActivity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
                     Toast.makeText(context, "Successfully signed out", Toast.LENGTH_SHORT).show()
+                }
+                .show()
+        }
+        binding.btnClearStats.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Clears stats")
+                .setMessage("You are about to clear your stats. Do you want to continue?")
+                .setNegativeButton(getString(R.string.no)) { dialog, which ->
+                    // Respond to negative button press
+                }
+                .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                    QuizRepository().clearStats()
+                    Toast.makeText(context, "Successfully cleared stats", Toast.LENGTH_SHORT).show()
                 }
                 .show()
         }
