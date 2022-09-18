@@ -5,5 +5,9 @@ data class Stats(
     val userCorrectAnswers: Long,
     val userIncorrectAnswers: Long,
     val userCompletedQuizzes: Long,
-    val globalScore: Long
-)
+    val globalScore: Long,
+    val globalCorrectAnswers: Long,
+    val globalIncorrectAnswers: Long,
+    val globalCompletedQuizzes: Long,
+
+    )

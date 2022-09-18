@@ -19,7 +19,7 @@ class StatsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
         viewModel.getUserStats()
-        viewModel.stats.observe(this){
+        viewModel.stats.observe(this) {
             Log.d("stats", it.toString())
         }
     }

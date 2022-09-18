@@ -13,7 +13,7 @@ class StatsViewModel(private val quizRepository: QuizRepository) : ViewModel() {
     val stats: LiveData<Stats>
         get() = _stats
 
-    fun getUserStats(){
+    fun getUserStats() {
         quizRepository.getUserStats(_stats)
     }
 }

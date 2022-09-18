@@ -78,13 +78,34 @@ class QuizRepository {
                         dataSnapshot.child(Constants.GLOBAL_POINTS_KEY)
                             .getValue(Long::class.java)!!
 
+                var globalCorrectAnswers = 0.toLong()
+                if (dataSnapshot.child(Constants.GLOBAL_CORRECT_ANSWERS_PATH).exists())
+                    globalCorrectAnswers =
+                        dataSnapshot.child(Constants.GLOBAL_CORRECT_ANSWERS_PATH)
+                            .getValue(Long::class.java)!!
+
+                var globalIncorrectAnswers = 0.toLong()
+                if (dataSnapshot.child(Constants.GLOBAL_INCORRECT_ANSWERS_PATH).exists())
+                    globalIncorrectAnswers =
+                        dataSnapshot.child(Constants.GLOBAL_INCORRECT_ANSWERS_PATH)
+                            .getValue(Long::class.java)!!
+
+                var globalCompletedQuizzes = 0.toLong()
+                if (dataSnapshot.child(Constants.GLOBAL_COMPLETED_QUIZZES).exists())
+                    globalCompletedQuizzes =
+                        dataSnapshot.child(Constants.GLOBAL_COMPLETED_QUIZZES)
+                            .getValue(Long::class.java)!!
+
                 _stats.postValue(
                     Stats(
                         userScore,
                         userCorrectAnswers,
                         userIncorrectAnswers,
                         userCompletedQuizzes,
-                        globalScore
+                        globalScore,
+                        globalCorrectAnswers,
+                        globalIncorrectAnswers,
+                        globalCompletedQuizzes
                     )
                 )
             }
@@ -148,6 +169,9 @@ class QuizRepository {
                 .child(Constants.COMPLETED_QUIZZES)
                 .setValue(ServerValue.increment(1))
         }
+        usersReference
+            .child(Constants.GLOBAL_COMPLETED_QUIZZES)
+            .setValue(ServerValue.increment(1))
     }
 
     fun nextQuestion(results: Result, questionId: String?) {
@@ -159,6 +183,14 @@ class QuizRepository {
         usersReference
             .child(Constants.GLOBAL_POINTS_KEY)
             .setValue(ServerValue.increment(points.toLong()))
+
+        usersReference
+            .child(Constants.GLOBAL_CORRECT_ANSWERS_PATH)
+            .setValue(ServerValue.increment(results.numCorrect.toLong()))
+
+        usersReference
+            .child(Constants.GLOBAL_INCORRECT_ANSWERS_PATH)
+            .setValue(ServerValue.increment(results.numIncorrect.toLong()))
     }
 
     private fun addPointsToUser(results: Result, points: Int) {

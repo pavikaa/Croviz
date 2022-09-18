@@ -2,7 +2,10 @@ package com.markopavicic.croviz.utils
 
 class Constants {
     companion object {
-        const val COMPLETED_QUIZZES="numQuizzes"
+        const val GLOBAL_CORRECT_ANSWERS_PATH = "globalCorrect"
+        const val GLOBAL_INCORRECT_ANSWERS_PATH = "globalIncorrect"
+        const val COMPLETED_QUIZZES = "numQuizzes"
+        const val GLOBAL_COMPLETED_QUIZZES = "globalNumQuizzes"
         const val USER_QUESTIONS_PATH = "questionIds"
         const val POINTS_KEY = "points"
         const val GLOBAL_POINTS_KEY = "globalPoints"
