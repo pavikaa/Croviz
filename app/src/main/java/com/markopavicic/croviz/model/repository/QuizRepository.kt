@@ -18,9 +18,6 @@ class QuizRepository {
     private val quizReference = database.getReference(Constants.QUIZ_REF)
 
 
-    private lateinit var userQuestions: MutableList<String>
-    private lateinit var userQuizzes: MutableList<String>
-
     fun saveQuiz(quiz: Quiz, key: String) {
         quizReference
             .child(key)
@@ -71,6 +68,11 @@ class QuizRepository {
                     userCompletedQuizzes =
                         dataSnapshot.child(userId!!).child(Constants.COMPLETED_QUIZZES)
                             .getValue(Long::class.java)!!
+                var userCompletedQuestions = 0.toLong()
+                if (dataSnapshot.child(userId!!).child(Constants.USER_COMPLETED_QUESTIONS).exists())
+                    userCompletedQuestions =
+                        dataSnapshot.child(userId!!).child(Constants.COMPLETED_QUIZZES)
+                            .getValue(Long::class.java)!!
 
                 var globalScore = 0.toLong()
                 if (dataSnapshot.child(Constants.GLOBAL_POINTS_KEY).exists())
@@ -96,16 +98,24 @@ class QuizRepository {
                         dataSnapshot.child(Constants.GLOBAL_COMPLETED_QUIZZES)
                             .getValue(Long::class.java)!!
 
+                var globalCompletedQuestions = 0.toLong()
+                if (dataSnapshot.child(Constants.GLOBAL_COMPLETED_QUESTIONS).exists())
+                    globalCompletedQuestions =
+                        dataSnapshot.child(Constants.GLOBAL_COMPLETED_QUESTIONS)
+                            .getValue(Long::class.java)!!
+
                 _stats.postValue(
                     Stats(
                         userScore,
                         userCorrectAnswers,
                         userIncorrectAnswers,
                         userCompletedQuizzes,
+                        userCompletedQuestions,
                         globalScore,
                         globalCorrectAnswers,
                         globalIncorrectAnswers,
-                        globalCompletedQuizzes
+                        globalCompletedQuizzes,
+                        globalCompletedQuestions
                     )
                 )
             }
@@ -191,6 +201,10 @@ class QuizRepository {
         usersReference
             .child(Constants.GLOBAL_INCORRECT_ANSWERS_PATH)
             .setValue(ServerValue.increment(results.numIncorrect.toLong()))
+
+        usersReference
+            .child(Constants.GLOBAL_COMPLETED_QUESTIONS)
+            .setValue(ServerValue.increment(1))
     }
 
     private fun addPointsToUser(results: Result, points: Int) {
@@ -218,6 +232,10 @@ class QuizRepository {
             .child(Constants.USER_QUESTIONS_PATH)
             .child(questionId!!)
             .setValue("")
+        usersReference
+            .child(userId!!)
+            .child(Constants.USER_COMPLETED_QUESTIONS)
+            .setValue(ServerValue.increment(1))
     }
 
 }
