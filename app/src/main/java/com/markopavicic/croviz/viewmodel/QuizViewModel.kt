@@ -18,13 +18,9 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
     val allQuizzes: LiveData<MutableList<Quiz>>
         get() = _allQuizzes
 
-    private var _points = 0
-
-    val points: Int
-        get() = _points
-
     private var _results = mutableListOf<Result>()
 
+    var points = 0
 
     fun getQuizById(quizId: String) {
         quizRepository.getQuiz(quizId, _quiz)
@@ -34,16 +30,13 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
         quizRepository.getAllQuizes(_allQuizzes)
     }
 
-    fun postAnswers(result: Result) {
-        _results.add(result)
+    fun finishQuestion(results: Result, questionId: String) {
+        points += results.numCorrect * 10 - results.numIncorrect * 5
+        quizRepository.nextQuestion(results, questionId)
     }
 
     fun completeQuiz() {
-        for (result in _results) {
-            _points += result.numCorrect * 10
-            _points -= result.numIncorrect * 5
-        }
-        quizRepository.completeQuiz(quiz.value?.quizId, _points)
+        quizRepository.completeQuiz(quiz.value?.quizId)
     }
 }
 

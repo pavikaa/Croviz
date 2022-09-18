@@ -69,6 +69,10 @@ class QuestionFragment : Fragment() {
                     if (questionNo + 1 < quiz.questions.size) {
                         nextQuestion(quiz)
                     } else {
+                        viewModel.finishQuestion(
+                            adapter.getResults(),
+                            quiz.questions[questionNo].questionId
+                        )
                         completeQuiz()
                     }
                 },
@@ -92,7 +96,7 @@ class QuestionFragment : Fragment() {
     }
 
     private fun nextQuestion(quiz: Quiz) {
-        viewModel.postAnswers(adapter.getResults())
+        viewModel.finishQuestion(adapter.getResults(), quiz.questions[questionNo].questionId)
         questionNo += 1
         binding.tvQuestionNumber.text =
             "Question " + (questionNo + 1).toString() + " out of " + quiz.questions.size.toString()
@@ -102,7 +106,6 @@ class QuestionFragment : Fragment() {
     }
 
     private fun completeQuiz() {
-        viewModel.postAnswers(adapter.getResults())
         viewModel.completeQuiz()
         findNavController().navigate(R.id.action_questionFragment_to_quizCompletionFragment)
     }

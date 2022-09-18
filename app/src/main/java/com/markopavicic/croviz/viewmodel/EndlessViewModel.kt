@@ -14,6 +14,7 @@ class EndlessViewModel(private val quizRepository: QuizRepository) : ViewModel()
 
     private lateinit var currentQuiz: Quiz
 
+
     private val _allQuizzes: MutableLiveData<MutableList<Quiz>> = MutableLiveData()
     val allQuizzes: LiveData<MutableList<Quiz>>
         get() = _allQuizzes
@@ -26,14 +27,12 @@ class EndlessViewModel(private val quizRepository: QuizRepository) : ViewModel()
         val randomQuizPosition = allQuizzes.value?.let { Random.nextInt(0, it.size) }
         val randomQuiz = randomQuizPosition?.let { allQuizzes.value?.get(it) }
         currentQuiz = randomQuiz!!
-        val randomQuestionPosition = randomQuiz?.questions?.let { Random.nextInt(0, it.size) }
-        return randomQuestionPosition?.let { randomQuiz?.questions?.get(it) }!!
+        val randomQuestionPosition = randomQuiz.questions.let { Random.nextInt(0, it.size) }
+        return randomQuestionPosition.let { randomQuiz.questions[it] }
     }
 
     fun finishQuestion(results: Result) {
-        val points = results.numCorrect * 10 - results.numIncorrect * 5
-        quizRepository.endless(points, currentQuiz.quizId)
-
+        quizRepository.nextQuestion(results, currentQuiz.quizId)
     }
 
 

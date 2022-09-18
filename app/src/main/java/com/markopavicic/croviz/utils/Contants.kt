@@ -13,5 +13,7 @@ class Constants {
         const val QUIZ_REF = "quiz"
         const val USER_CREATED_QUIZ_PATH = "createdQuizzes"
         const val USER_QUIZ_PATH = "completedQuizzes"
+        const val CORRECT_ANSWERS_PATH = "correct"
+        const val INCORRECT_ANSWERS_PATH = "incorrect"
     }
 }

@@ -1,12 +1,12 @@
 package com.markopavicic.croviz.model.repository
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.markopavicic.croviz.model.data.Quiz
+import com.markopavicic.croviz.model.data.Result
 import com.markopavicic.croviz.utils.Constants
 
 class QuizRepository {
@@ -84,44 +84,51 @@ class QuizRepository {
         return quizReference.push().key!!
     }
 
-    fun completeQuiz(quizId: String?, _points: Int) {
+    fun completeQuiz(quizId: String?) {
         if (userId != null) {
             usersReference
                 .child(userId)
                 .child(Constants.USER_QUIZ_PATH)
                 .child(quizId!!)
                 .setValue("")
-
-            usersReference
-                .child(userId)
-                .child(Constants.POINTS_KEY)
-                .setValue(ServerValue.increment(_points.toLong()))
         }
-        pointsReference
-            .child(Constants.POINTS_KEY)
-            .setValue(ServerValue.increment(_points.toLong()))
     }
 
-    fun endless(points: Int, quizId: String) {
+    fun nextQuestion(results: Result, questionId: String?) {
+        val points = results.numCorrect * 10 - results.numIncorrect * 5
         if (userId != null) {
-            usersReference
-                .child(userId)
-                .child(Constants.POINTS_KEY)
-                .setValue(ServerValue.increment(points.toLong()))
-            addQuestionId(quizId)
+            addPointsToUser(results, points)
+            addQuestionIdToUser(questionId)
         }
         pointsReference
             .child(Constants.POINTS_KEY)
             .setValue(ServerValue.increment(points.toLong()))
     }
 
-    private fun addQuestionId(quizId: String) {
+    private fun addPointsToUser(results: Result, points: Int) {
         if (userId != null) {
             usersReference
                 .child(userId)
-                .child(Constants.USER_QUESTIONS_PATH)
-                .child(quizId)
-                .setValue("")
+                .child(Constants.POINTS_KEY)
+                .setValue(ServerValue.increment(points.toLong()))
+
+            usersReference
+                .child(userId)
+                .child(Constants.CORRECT_ANSWERS_PATH)
+                .setValue(ServerValue.increment(results.numCorrect.toLong()))
+
+            usersReference
+                .child(userId)
+                .child(Constants.INCORRECT_ANSWERS_PATH)
+                .setValue(ServerValue.increment(results.numIncorrect.toLong()))
         }
+    }
+
+    private fun addQuestionIdToUser(questionId: String?) {
+        usersReference
+            .child(userId!!)
+            .child(Constants.USER_QUESTIONS_PATH)
+            .child(questionId!!)
+            .setValue("")
     }
 }
