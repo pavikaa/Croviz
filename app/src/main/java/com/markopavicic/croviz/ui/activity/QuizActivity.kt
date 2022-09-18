@@ -1,8 +1,11 @@
 package com.markopavicic.croviz.ui.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
+import com.markopavicic.croviz.R
 import com.markopavicic.croviz.databinding.ActivityQuizBinding
 import com.markopavicic.croviz.model.repository.QuizRepository
 import com.markopavicic.croviz.utils.Constants
@@ -14,6 +17,7 @@ class QuizActivity : AppCompatActivity() {
     private val viewModel: QuizViewModel by viewModels {
         QuizViewModelFactory(QuizRepository())
     }
+    private var quizExists: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +27,19 @@ class QuizActivity : AppCompatActivity() {
 
         val key = getKeyFromIntent()
         if (key.isNotEmpty()) {
-            viewModel.getQuizById(key)
+            QuizRepository().checkIfQuizExists(key, quizExists)
+            quizExists.observe(this) {
+                if (it) {
+                    viewModel.getQuizById(key)
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.wrong_qr),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
+                }
+            }
         }
     }
 

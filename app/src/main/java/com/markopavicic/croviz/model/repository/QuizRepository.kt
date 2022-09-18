@@ -263,4 +263,22 @@ class QuizRepository {
         }
     }
 
+    fun checkIfQuizExists(key: String, check: MutableLiveData<Boolean>) {
+        var quizExists = false
+        val quizExistsListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                if (dataSnapshot.child(key).exists())
+                    quizExists = true
+
+                check.postValue(quizExists)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        quizReference.addValueEventListener(quizExistsListener)
+    }
+
 }

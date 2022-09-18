@@ -2,7 +2,6 @@
     <string name="app_name">Croviz</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="skip_sign_in">Skip sign in</string>
     <string name="skip_sign_in_details">If you don\'t sign in you won\'t be able to create quizzes and compare your results with other users. Do you want to continue?</string>
     <string name="no">No</string>
@@ -25,10 +24,10 @@
     <string name="history">History</string>
     <string name="geography">Geography</string>
     <string name="sports">Sports</string>
-    <string name="question">\"Question \"</string>
-    <string name="out_of">\" out of \"</string>
-    <string name="quiz_results">\"Quiz results: \"</string>
-    <string name="points">\" points!\"</string>
+    <string name="question">Question\u0020</string>
+    <string name="out_of">\u0020out of\u0020</string>
+    <string name="quiz_results">Quiz results:\u0020</string>
+    <string name="points">\u0020points!</string>
     <string name="question_label">Question</string>
     <string name="no_question">No questions available at the moment</string>
     <string name="choose_answer">Choose one or more answer</string>
@@ -97,4 +96,6 @@
     <string name="sign_out_success">Successfully signed out</string>
     <string name="clear_stats_description">You are about to clear your stats. Do you want to continue?</string>
     <string name="clear_stats_success">Successfully cleared stats</string>
+    <string name="question_hint">Question</string>
+    <string name="wrong_qr">Wrong QR code</string>
 </resources>
