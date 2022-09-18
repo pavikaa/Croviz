@@ -89,8 +89,8 @@ class HomeFragment : Fragment() {
         viewModel.allQuizzes.observe(viewLifecycleOwner) { allQuizzes ->
             this.allQuizzes = allQuizzes
             setupRecyclerView(allQuizzes.toList())
+            quizFilter()
         }
-        quizFilter()
     }
 
     private fun launchStats() {

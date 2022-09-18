@@ -20,7 +20,7 @@ class EndlessViewModel(private val quizRepository: QuizRepository) : ViewModel()
         get() = _allQuizzes
 
     fun getAllQuizzes() {
-        quizRepository.getAllQuizes(_allQuizzes)
+        quizRepository.getAllQuizzes(_allQuizzes)
     }
 
     fun getRandomQuestion(): Question {

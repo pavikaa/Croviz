@@ -4,17 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.markopavicic.croviz.model.data.Stats
 import com.markopavicic.croviz.model.repository.QuizRepository
 
 class StatsViewModel(private val quizRepository: QuizRepository) : ViewModel() {
-    private var _userScore: MutableLiveData<Long> = MutableLiveData()
-    val userScore: LiveData<Long>
-        get() = _userScore
 
-    private var _globalScore: MutableLiveData<Long> = MutableLiveData()
-    val globalScore: LiveData<Long>
-        get() = _globalScore
+    private var _stats: MutableLiveData<Stats> = MutableLiveData()
+    val stats: LiveData<Stats>
+        get() = _stats
 
+    fun getUserStats(){
+        quizRepository.getUserStats(_stats)
+    }
 }
 
 class StatsViewModelFactory(private val quizRepository: QuizRepository) :

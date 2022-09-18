@@ -27,7 +27,7 @@ class QuizViewModel(private val quizRepository: QuizRepository) : ViewModel() {
     }
 
     fun getAllQuizzes() {
-        quizRepository.getAllQuizes(_allQuizzes)
+        quizRepository.getAllQuizzes(_allQuizzes)
     }
 
     fun finishQuestion(results: Result, questionId: String) {
